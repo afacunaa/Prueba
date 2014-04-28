@@ -1,0 +1,18 @@
+package banco;
+import akka.actor.UntypedActor;
+
+public class ActorCliente extends UntypedActor {
+
+	int cadaUna;
+
+	@Override
+	public void onReceive(Object message) throws Exception {
+		if(message instanceof Integer) {
+			cadaUna=(int) message;
+			getSender().tell(cadaUna,  getSelf());
+		}
+		else{
+			unhandled(message);
+		}
+	}
+}
