@@ -1,0 +1,25 @@
+package banco;
+import akka.actor.UntypedActor;
+
+public class ActorBanco extends UntypedActor {
+	
+	private int estado;
+	
+	@Override
+	public void onReceive(Object message) throws Exception {
+		if(message instanceof Integer ) {
+			sumar((int) message);
+		}
+		else{
+			unhandled(message);
+		}
+	}
+
+	private void sumar(int  message) {
+		int aux=0;
+				aux = estado;
+                aux+=message;
+				estado = aux;
+		System.out.println(this.getContext() + "El estado es: " + estado);
+	}
+}
